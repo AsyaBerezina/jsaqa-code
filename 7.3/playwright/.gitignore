@@ -1,9 +1,7 @@
 /node_modules/
 user.js
 
-/test-results/
 /playwright-report/
-/blob-report/
 /playwright/.cache/
 
 
