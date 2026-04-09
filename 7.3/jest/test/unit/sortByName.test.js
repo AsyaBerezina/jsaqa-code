@@ -14,4 +14,13 @@ describe("Books names test suit", () => {
       "Гарри Поттер",
     ]);
   });
+
+  it("Names equal ignoring case use comparator return 0 (stable relative order)", () => {
+    expect(sorting.sortByName(["cc", "Bb", "aa", "AA"])).toEqual([
+      "aa",
+      "AA",
+      "Bb",
+      "cc",
+    ]);
+  });
 });

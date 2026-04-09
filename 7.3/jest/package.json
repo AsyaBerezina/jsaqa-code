@@ -4,7 +4,10 @@
   "description": "jest test",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --collectCoverage",
+    "eslint": "eslint",
+    "prettier": "prettier"
   },
   "keywords": [
     "jest",
@@ -15,5 +18,19 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.3.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/coverage/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   }
 }
