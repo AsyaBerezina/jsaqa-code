@@ -1,34 +1,19 @@
-const puppeteer = require("puppeteer");
-const chai = require("chai");
-const expect = chai.expect;
-const { Given, When, Then, Before, After } = require("cucumber");
+const { Given, When, Then } = require("@cucumber/cucumber");
+const { expect } = require("chai");
 const { putText, getText } = require("../../lib/commands.js");
 
-Before(async function () {
-  const browser = await puppeteer.launch({ headless: false, slowMo: 50 });
-  const page = await browser.newPage();
-  this.browser = browser;
-  this.page = page;
-});
-
-After(async function () {
-  if (this.browser) {
-    await this.browser.close();
-  }
-});
-
-Given("user is on {string} page", async function (string) {
-  return await this.page.goto(`https://netology.ru${string}`, {
-    setTimeout: 20000,
+Given("user is on {string} page", async function (path) {
+  await this.page.goto(`https://netology.ru${path}`, {
+    waitUntil: "domcontentloaded",
+    timeout: 30_000,
   });
 });
 
-When("user search by {string}", async function (string) {
-  return await putText(this.page, "input", string);
+When("user search by {string}", async function (query) {
+  await putText(this.page, "input", query);
 });
 
-Then("user sees the course suggested {string}", async function (string) {
+Then("user sees the course suggested {string}", async function (expected) {
   const actual = await getText(this.page, "a[data-name]");
-  const expected = await string;
-  expect(actual).contains(expected);
+  expect(actual).to.include(expected);
 });
