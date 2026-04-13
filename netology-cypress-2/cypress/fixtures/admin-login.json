@@ -1,0 +1,15 @@
+{
+  "happy": {
+    "description": "Успешный вход в админку",
+    "email": "qamid@qamid.ru",
+    "password": "qamid",
+    "expectedPathIncludes": "/admin/index.php",
+    "expectedHeading": "Управление залами"
+  },
+  "sad": {
+    "description": "Неверный пароль — ошибка авторизации",
+    "email": "qamid@qamid.ru",
+    "password": "wrong-password-12345",
+    "expectedErrorText": "Ошибка авторизации!"
+  }
+}

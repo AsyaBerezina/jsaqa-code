@@ -1,0 +1,44 @@
+name: Cypress Cloud (parallel)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "netology-cypress-2/**"
+
+jobs:
+  cypress-cloud:
+    name: Cypress Cloud (parallel node ${{ matrix.node_index }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_index: [1, 2]
+    defaults:
+      run:
+        working-directory: netology-cypress-2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: netology-cypress-2/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress (record + parallel)
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: >
+          npx cypress run
+          --browser electron
+          --record
+          --parallel
+          --group "e2e"
+          --ci-build-id "${{ github.repository }}-${{ github.workflow }}-${{ github.run_id }}-${{ github.run_attempt }}"
+

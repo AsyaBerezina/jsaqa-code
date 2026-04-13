@@ -1,0 +1,41 @@
+{
+  "client": {
+    "main": {
+      "pageHeaderTitle": "h1.page-header__title",
+      "pageNav": "nav.page-nav",
+      "movieSection": "section.movie",
+      "movieTitle": "h2.movie__title",
+      "moviePoster": "img.movie__poster-image",
+      "pageNavDayChosen": ".page-nav__day_chosen",
+      "pageNavDay": ".page-nav__day"
+    },
+    "seances": {
+      "hallBlock": ".movie-seances__hall",
+      "hallTitle": "h3.movie-seances__hall-title",
+      "seanceLink": "a.movie-seances__time",
+      "seanceLinkAvailable": "a.movie-seances__time:not(.acceptin-button-disabled)"
+    },
+    "hall": {
+      "filmTitle": "h2.buying__info-title",
+      "hallNameParagraph": "p.buying__info-hall",
+      "schemeWrapper": ".buying-scheme__wrapper",
+      "freeStandardSeat": ".buying-scheme__chair_standart:not(.buying-scheme__chair_taken)",
+      "freeSeat": ".buying-scheme__row .buying-scheme__chair:not(.buying-scheme__chair_taken):not(.buying-scheme__chair_disabled)",
+      "bookButton": "button.acceptin-button"
+    }
+  },
+  "admin": {
+    "login": {
+      "form": "form.login__form",
+      "emailInput": "input[name=\"email\"]",
+      "passwordInput": "input[name=\"password\"]",
+      "submitButton": "input.login__button[type=\"submit\"]"
+    },
+    "hallControl": {
+      "section": "#hall-control",
+      "hallList": "#hall-control ul.conf-step__list",
+      "hallNameButton": ".conf-step__button-trash",
+      "managementHeading": "#hall-control h2.conf-step__title"
+    }
+  }
+}

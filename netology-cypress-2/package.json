@@ -1,0 +1,24 @@
+{
+  "name": "jsaqa-live-7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint .",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "cypress:open": "cypress open",
+    "test": "cypress run --browser chrome",
+    "test:headed": "cypress run --browser chrome --headed",
+    "test:record": "cypress run --browser chrome --record --config video=true",
+    "test:record:electron": "cypress run --browser electron --record --config video=true",
+    "test:record:headed": "cypress run --browser chrome --headed --record --config video=true",
+    "test:record:parallel": "cypress run --browser electron --record --parallel --group \"e2e\" --ci-build-id \"local-$(date +%s)\" --config video=true"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.17.0"
+  }
+}
