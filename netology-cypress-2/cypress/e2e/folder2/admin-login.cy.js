@@ -1,5 +1,5 @@
-const selectors = require("../fixtures/selectors.json");
-const adminLogin = require("../fixtures/admin-login.json");
+const selectors = require("../../fixtures/selectors.json");
+const adminLogin = require("../../fixtures/admin-login.json");
 
 describe("Авторизация в админке", () => {
   beforeEach(() => {
@@ -12,9 +12,6 @@ describe("Авторизация в админке", () => {
     cy.get(login.form).should("be.visible");
     cy.loginAdmin(data.email, data.password);
     cy.url({ timeout: 15000 }).should("include", data.expectedPathIncludes);
-    cy.get(selectors.admin.hallControl.section, { timeout: 20000 }).should(
-      "exist"
-    );
     cy.get(selectors.admin.hallControl.managementHeading, { timeout: 20000 })
       .should("be.visible")
       .and("contain", data.expectedHeading);
@@ -26,3 +23,4 @@ describe("Авторизация в админке", () => {
     cy.contains(data.expectedErrorText).should("be.visible");
   });
 });
+

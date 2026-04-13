@@ -1,0 +1,53 @@
+pipeline {
+  agent any
+
+  options {
+    timestamps()
+  }
+
+  parameters {
+    choice(
+      name: 'RUN_MODE',
+      choices: [
+        'test:chrome',
+        'test:firefox',
+        'test:electron',
+        'test:parallel:2browsers',
+        'test:parallel:folders'
+      ],
+      description: 'Как запускать Cypress'
+    )
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Install') {
+      steps {
+        dir('netology-cypress-2') {
+          sh 'npm ci'
+        }
+      }
+    }
+
+    stage('Run Cypress') {
+      steps {
+        dir('netology-cypress-2') {
+          sh "npm run ${params.RUN_MODE}"
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: 'netology-cypress-2/cypress/screenshots/**/*', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'netology-cypress-2/cypress/videos/**/*', allowEmptyArchive: true
+    }
+  }
+}
+

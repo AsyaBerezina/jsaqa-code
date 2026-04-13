@@ -10,15 +10,28 @@
     "format:check": "prettier --check .",
     "cypress:open": "cypress open",
     "test": "cypress run --browser chrome",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:electron": "cypress run --browser electron",
     "test:headed": "cypress run --browser chrome --headed",
     "test:record": "cypress run --browser chrome --record --config video=true",
     "test:record:electron": "cypress run --browser electron --record --config video=true",
     "test:record:headed": "cypress run --browser chrome --headed --record --config video=true",
-    "test:record:parallel": "cypress run --browser electron --record --parallel --group \"e2e\" --ci-build-id \"local-$(date +%s)\" --config video=true"
+    "test:record:parallel": "cypress run --browser electron --record --parallel --group \"e2e\" --ci-build-id \"local-$(date +%s)\" --config video=true",
+
+    "test:parallel:2browsers": "concurrently -n chrome,firefox -c blue,magenta \"npm run test:chrome\" \"npm run test:firefox\"",
+
+    "test:folder1": "cypress run --browser chrome --spec \"cypress/e2e/folder1/**/*.js\"",
+    "test:folder2": "cypress run --browser firefox --spec \"cypress/e2e/folder2/**/*.js\"",
+    "test:parallel:folders": "concurrently -n folder1,folder2 -c blue,magenta \"npm run test:folder1\" \"npm run test:folder2\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cypress": "^13.17.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0"
   }
 }

@@ -5,7 +5,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: "http://qamid.tmweb.ru",
     specPattern: "cypress/e2e/**/*.js",
-    supportFile: "cypress/support/index.js",
+    supportFile: "cypress/support/e2e.js",
     viewportWidth: 1366,
     viewportHeight: 768,
     video: false,

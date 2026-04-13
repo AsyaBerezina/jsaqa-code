@@ -1,4 +1,4 @@
-const selectors = require("../fixtures/selectors.json");
+const selectors = require("../../fixtures/selectors.json");
 
 describe("Главная страница клиента", () => {
   beforeEach(() => {
@@ -19,3 +19,4 @@ describe("Главная страница клиента", () => {
     cy.get(main.moviePoster).first().should("be.visible");
   });
 });
+
